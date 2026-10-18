@@ -77,32 +77,33 @@ export const themeOptions: ThemeOptions = {
   typography: {
     fontFamily: "Inter, Poppins, Ubuntu, Roboto",
     h1: {
-      fontSize: "2.2rem",
+      fontSize: '2.2rem',
       fontWeight: 700,
       lineHeight: 1.1,
     },
     h2: {
-      fontSize: "1.6rem",
+      fontSize: '1.8rem',
       fontWeight: 700,
       lineHeight: 1.1,
     },
     h3: {
       fontWeight: 600,
-      fontSize: "1rem",
+      fontSize: '1.6rem',
       lineHeight: 1.1,
     },
     h4: {
-      fontSize: "1rem",
+      fontSize: '1.4rem',
       fontWeight: 500,
       lineHeight: 1.1,
     },
     h5: {
-      fontSize: "1rem",
+      fontSize: '1.2rem',
       lineHeight: 1.1,
     },
     h6: {
-      fontSize: "1rem",
+      fontSize: '1rem',
       lineHeight: 1.1,
+      fontWeight: 300,
     },
     fontSize: 16,
     subtitle1: {

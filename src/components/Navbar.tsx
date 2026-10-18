@@ -1,12 +1,13 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 export const Navbar = ({
-  heroRef,
-  navRef
+  navRef,
+  heroElement,
 }: {
-  heroRef: React.RefObject<HTMLDivElement | null>;
   navRef: React.RefObject<HTMLDivElement | null>;
+  heroElement: HTMLDivElement | null
 }) => {
   const theme = useTheme();
 
@@ -14,10 +15,9 @@ export const Navbar = ({
 
   // setup observer for if navbar is intersecting with hero component
   useEffect(() => {
-    const HeroElement = heroRef.current;
     const NavElement = navRef.current;
 
-    if (!HeroElement || !NavElement) return;
+    if (!heroElement || !NavElement) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -28,12 +28,12 @@ export const Navbar = ({
       },
     );
 
-    observer.observe(HeroElement);
+    observer.observe(heroElement);
 
     return () => {
       observer.disconnect();
     };
-  }, [heroRef, navRef]);
+  }, [heroElement, navRef]);
 
   return (
     <Box sx={{
@@ -56,9 +56,9 @@ export const Navbar = ({
           label: "nav",
         }}
       >
+        <Link to={"/"}>Cayden Batten — Electrical and Mechatronics Engineering Student</Link>
         <Typography variant="body1">
-          Intersecting: {`${isIntersecting}`}
-          Divider: {theme.palette.divider}
+          Intersecting: {isIntersecting}
         </Typography>
       </Box>
     </Box>

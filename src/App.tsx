@@ -2,13 +2,18 @@ import { Navbar } from "./components/Navbar";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { rootTheme } from "./components/Theme/Theme";
 import { Footer } from "./components/Footer";
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router";
 import { Landing } from "./pages/Landing";
 import { Contact } from "./pages/Contact";
 
 function App() {
-  const heroRef = useRef<HTMLDivElement | null>(null);
+  const [heroElement, setHeroElement] = useState<HTMLDivElement | null>(null)
+  const heroRef = useCallback((node: HTMLDivElement | null) => {
+    setHeroElement(node)
+  }, []);
+
+
   const navRef = useRef<HTMLDivElement | null>(null);
   const footerRef = useRef<HTMLDivElement | null>(null);
 
@@ -20,7 +25,7 @@ function App() {
   return (
     <ThemeProvider theme={rootTheme}>
       <CssBaseline />
-      <Navbar navRef={navRef} heroRef={heroRef} />
+      <Navbar navRef={navRef} heroElement={heroElement} />
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<Landing heroRef={heroRef} />} />

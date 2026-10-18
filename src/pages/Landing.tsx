@@ -50,7 +50,7 @@ const AboutSection = () => {
 export const Landing = ({
   heroRef,
 }: {
-  heroRef: React.RefObject<HTMLDivElement | null>;
+  heroRef: React.RefCallback<HTMLDivElement | null>;
 }) => {
 
   const theme = useTheme()

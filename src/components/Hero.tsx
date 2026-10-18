@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { type ResponsiveStyleValue } from "@mui/system";
 import type { Property } from "csstype";
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export const Hero = ({
   heroRef,
@@ -11,21 +11,24 @@ export const Hero = ({
   minHeight,
   padding,
 }: {
-  heroRef: React.RefObject<HTMLDivElement | null>;
+  heroRef: React.RefCallback<HTMLDivElement | null>;
   src: string;
   TextComponent?: React.ReactNode;
   minHeight?: ResponsiveStyleValue<Property.Width>;
   padding?: ResponsiveStyleValue<Property.Width>;
 }) => {
+
+  const localHeroRef = useRef<HTMLDivElement | null>(null)
+
   const [heroScale, setHeroScale] = useState(1);
 
   useEffect(() => {
     window.addEventListener(
       "scroll",
       () => {
-        if (!heroRef.current) return;
+        if (!localHeroRef.current) return;
         const zoomProgress = Math.min(
-          window.scrollY / heroRef.current?.offsetHeight,
+          window.scrollY / localHeroRef.current?.offsetHeight,
           1,
         );
         setHeroScale(1 + zoomProgress * 0.12);
@@ -34,9 +37,18 @@ export const Hero = ({
     );
   }, [heroRef]);
 
+
+  const setHeroElement = useCallback(
+    (node: HTMLDivElement | null) => {
+      localHeroRef.current = node
+      heroRef(node)
+    },
+    [heroRef]
+  )
+
   return (
     <Box
-      ref={heroRef}
+      ref={setHeroElement}
       sx={{
         label: "hero",
         overflow: "hidden",
