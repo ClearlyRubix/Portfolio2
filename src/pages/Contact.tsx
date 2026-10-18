@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import type React from "react";
 
 const ContactFormGroup = ({ children }: { children: React.ReactNode }) => {
@@ -62,15 +62,58 @@ const ContactFormField = ({
   );
 };
 
-export const ContactSection = () => {
+export const ContactForm = () => {
+  return (
+    <Box component="form">
+      <ContactFormGroup>
+        <Typography component="label">Name</Typography>
+        <ContactFormRow>
+          <ContactFormField
+            label="First Name"
+            name="firstName"
+            required
+            type="text"
+          />
+          <ContactFormField
+            label="Last Name"
+            name="lastName"
+            required
+            type="text"
+          />
+        </ContactFormRow>
+      </ContactFormGroup>
+      <ContactFormGroup>
+        <ContactFormField label="Email" name="email" required type="email" />
+      </ContactFormGroup>
+      <ContactFormGroup>
+        <Typography component={"label"}>Message</Typography>
+        <textarea name="message" rows={6} required />
+      </ContactFormGroup>
+      <Button variant="contained" type="submit">
+        Submit
+      </Button>
+    </Box>
+  );
+};
+
+export const Contact = () => {
+
+  const theme = useTheme()
+
   return (
     <Box
       sx={{
-        display: "grid",
+        display: {xs: "flex", md: "grid"},
         gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+        flexDirection: {xs: "column"},
         gap: "4vw",
-        alignItems: "center",
+        alignItems: {xs: "start", md: "center"},
+        justifyContent: "center",
         label: "ContactSection",
+        marginTop: "var(--nav-height)",
+        minHeight: "calc(100vh - var(--nav-height) - var(--footer-height))",
+        padding: theme.padding?.pagePadding,
+        maxWidth: "1200px"
       }}
     >
       <Box
@@ -80,7 +123,7 @@ export const ContactSection = () => {
           label: "ContactHeader",
         }}
       >
-        <Typography>Send Me a Message</Typography>
+        <Typography variant="h2">Send Me a Message</Typography>
       </Box>
       <Box
         sx={{
@@ -88,40 +131,7 @@ export const ContactSection = () => {
           label: "ContactFormColumn",
         }}
       >
-        <Box component="form">
-          <ContactFormGroup>
-            <Typography component="label">Name</Typography>
-            <ContactFormRow>
-              <ContactFormField
-                label="First Name"
-                name="firstName"
-                required
-                type="text"
-              />
-              <ContactFormField
-                label="Last Name"
-                name="lastName"
-                required
-                type="text"
-              />
-            </ContactFormRow>
-          </ContactFormGroup>
-          <ContactFormGroup>
-            <ContactFormField
-              label="Email"
-              name="email"
-              required
-              type="email"
-            />
-          </ContactFormGroup>
-          <ContactFormGroup>
-            <Typography component={"label"}>Message</Typography>
-            <textarea name="message" rows={6} required />
-          </ContactFormGroup>
-          <Button variant="contained" type="submit">
-            Submit
-          </Button>
-        </Box>
+        <ContactForm />
       </Box>
     </Box>
   );

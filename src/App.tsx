@@ -1,18 +1,36 @@
-import { AboutSection } from "./components/AboutSection";
-import { ContactSection } from "./components/Contact/ContactSection";
-import { WorkExperienceSection } from "./components/Experience/WorkExperienceSection";
 import { Navbar } from "./components/Navbar";
-import { Splash } from "./components/Splash";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { rootTheme } from "./components/Theme/Theme";
+import { Footer } from "./components/Footer";
+import { Suspense, useEffect, useRef } from "react";
+import { Route, Routes } from "react-router";
+import { Landing } from "./pages/Landing";
+import { Contact } from "./pages/Contact";
 
 function App() {
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const navRef = useRef<HTMLDivElement | null>(null);
+  const footerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (navRef.current) document.documentElement.style.setProperty('--nav-height', `${navRef.current.offsetHeight}px`)
+    if (footerRef.current) document.documentElement.style.setProperty('--footer-height', `${footerRef.current.offsetHeight}px`)
+  }, []);
+
   return (
-    <>
-      <Navbar />
-      <Splash />
-      <AboutSection />
-      <WorkExperienceSection />
-      <ContactSection />
-    </>
+    <ThemeProvider theme={rootTheme}>
+      <CssBaseline />
+      <Navbar navRef={navRef} heroRef={heroRef} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Landing heroRef={heroRef} />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/portfolio" element={<Landing heroRef={heroRef} />} />
+            <Route path="/resume" element={<Landing heroRef={heroRef} />} />
+          </Routes>
+        </Suspense>
+      <Footer footerRef={footerRef} />
+    </ThemeProvider>
   );
 }
 
