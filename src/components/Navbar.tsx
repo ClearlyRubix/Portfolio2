@@ -1,4 +1,9 @@
-import { BusinessCenterOutlined, DescriptionOutlined, HomeOutlined, MailOutlined } from "@mui/icons-material";
+import {
+  BusinessCenterOutlined,
+  DescriptionOutlined,
+  HomeOutlined,
+  MailOutlined,
+} from "@mui/icons-material";
 import {
   Box,
   Drawer,
@@ -6,7 +11,6 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemText,
   Typography,
 } from "@mui/material";
 import type { Property } from "csstype";
@@ -125,12 +129,30 @@ const NavIcon = ({
   );
 };
 
-const NavItem = ({ text, to, icon, setIsOpen }: { text: string, to: string, icon?: React.ReactNode, setIsOpen: React.Dispatch<React.SetStateAction<boolean>> }) => {
+const NavItem = ({
+  text,
+  to,
+  icon,
+  setIsOpen,
+}: {
+  text: string;
+  to: string;
+  icon?: React.ReactNode;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <ListItem disablePadding>
-      <ListItemButton component={Link} to={to} onClick={() => {setIsOpen(false)}}>
-        <ListItemIcon sx={{scale: 0.9}} >{icon}</ListItemIcon>
-        <ListItemText primary={text} />
+      <ListItemButton
+        component={Link}
+        to={to}
+        onClick={() => {
+          setIsOpen(false);
+        }}
+      >
+        <Box sx={{display: "flex", alignItems: "center", width: "100%", justifyContent: {xs: "center"}}}>
+          <ListItemIcon sx={{ scale: 1.2 }}>{icon}</ListItemIcon>
+          <Typography variant="body1" sx={{width: "75px", lineHeight: 2.7}}>{text}</Typography>
+        </Box>
       </ListItemButton>
     </ListItem>
   );
@@ -147,15 +169,35 @@ const NavDrawer = ({
     <Drawer open={isOpen} onClose={() => setIsOpen(false)} anchor="right">
       <Box
         sx={{
-          width: "20vw",
+          width: { xs: "100vw", sm: "200px" },
           paddingTop: "var(--nav-height)",
         }}
       >
         <List>
-          <NavItem setIsOpen={setIsOpen} text="Home" to="/" icon={<HomeOutlined />} />
-          <NavItem setIsOpen={setIsOpen} text="Resusme" to="/resume" icon={<DescriptionOutlined />} />
-          <NavItem setIsOpen={setIsOpen} text="Portfolio" to="/portfolio" icon={<BusinessCenterOutlined />} />
-          <NavItem setIsOpen={setIsOpen} text="Contact" to="/contact" icon={<MailOutlined />} />
+          <NavItem
+            setIsOpen={setIsOpen}
+            text="Home"
+            to="/"
+            icon={<HomeOutlined />}
+          />
+          <NavItem
+            setIsOpen={setIsOpen}
+            text="Resume"
+            to="/resume"
+            icon={<DescriptionOutlined />}
+          />
+          <NavItem
+            setIsOpen={setIsOpen}
+            text="Portfolio"
+            to="/portfolio"
+            icon={<BusinessCenterOutlined />}
+          />
+          <NavItem
+            setIsOpen={setIsOpen}
+            text="Contact"
+            to="/contact"
+            icon={<MailOutlined />}
+          />
         </List>
       </Box>
     </Drawer>
@@ -166,7 +208,7 @@ export const Navbar = ({
   navRef,
   heroElement,
   name,
-  title
+  title,
 }: {
   navRef: React.RefObject<HTMLDivElement | null>;
   heroElement: HTMLDivElement | null;
