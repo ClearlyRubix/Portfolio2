@@ -1,4 +1,4 @@
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import type React from "react";
 
 const ContactFormGroup = ({ children }: { children: React.ReactNode }) => {
@@ -98,11 +98,9 @@ export const ContactForm = () => {
 
 export const Contact = () => {
 
-  const theme = useTheme()
-
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         display: {xs: "flex", md: "grid"},
         gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
         flexDirection: {xs: "column"},
@@ -114,7 +112,7 @@ export const Contact = () => {
         minHeight: "calc(100vh - var(--nav-height) - var(--footer-height))",
         padding: theme.padding?.pagePadding,
         maxWidth: "1200px"
-      }}
+      })}
     >
       <Box
         sx={{

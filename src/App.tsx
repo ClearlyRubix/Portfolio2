@@ -25,7 +25,7 @@ function App() {
   return (
     <ThemeProvider theme={rootTheme}>
       <CssBaseline />
-      <Navbar navRef={navRef} heroElement={heroElement} />
+      <Navbar navRef={navRef} heroElement={heroElement} name="Cayden Batten" title="Electrical and Mechatronics Engineering Student"/>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<Landing heroRef={heroRef} />} />

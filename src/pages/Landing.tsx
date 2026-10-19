@@ -1,7 +1,7 @@
 import type React from "react";
 import { WorkExperienceSection } from "../components/Experience/WorkExperienceSection";
 import { Hero } from "../components/Hero";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const HeroText = () => {
   return (
@@ -53,7 +53,6 @@ export const Landing = ({
   heroRef: React.RefCallback<HTMLDivElement | null>;
 }) => {
 
-  const theme = useTheme()
   return (
     <>
       <Hero
@@ -64,9 +63,9 @@ export const Landing = ({
         padding={"4vw 4vw 6vw"}
       />
       <Box
-        sx={{
+        sx={(theme) => ({
           padding: theme.padding?.pagePadding,
-        }}
+        })}
       >
         <AboutSection />
         <WorkExperienceSection />
