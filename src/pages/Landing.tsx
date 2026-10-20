@@ -8,11 +8,11 @@ const HeroText = () => {
     <>
       <Typography
         variant="h1"
-        sx={{ whiteSpace: "pre-wrap", marginBottom: "1rem" }}
+        sx={(theme) => ({ whiteSpace: "pre-wrap", marginBottom: "1rem", mixBlendMode: "difference", color: theme.palette.primary.main })}
       >
         {"Hi I'm\nCayden Batten"}
       </Typography>
-      <Typography variant="body1" sx={{ maxWidth: "600px" }}> {/* Intro Line */}
+      <Typography variant="body1" sx={(theme) => ({ maxWidth: "600px", mixBlendMode: "difference", color: theme.palette.primary.main })}> {/* Intro Line */}
         About me blah blah blah. Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Nullam id dolor placerat, bibendum tortor sit amet,
         volutpat mi. In odio eros, tristique eu augue ac, egestas euismod eros.

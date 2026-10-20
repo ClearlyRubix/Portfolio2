@@ -149,9 +149,18 @@ const NavItem = ({
           setIsOpen(false);
         }}
       >
-        <Box sx={{display: "flex", alignItems: "center", width: "100%", justifyContent: {xs: "center"}}}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            justifyContent: { xs: "center" },
+          }}
+        >
           <ListItemIcon sx={{ scale: 1.2 }}>{icon}</ListItemIcon>
-          <Typography variant="body1" sx={{width: "75px", lineHeight: 2.7}}>{text}</Typography>
+          <Typography variant="body1" sx={{ width: "75px", lineHeight: 2.7 }}>
+            {text}
+          </Typography>
         </Box>
       </ListItemButton>
     </ListItem>
@@ -166,7 +175,18 @@ const NavDrawer = ({
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
-    <Drawer open={isOpen} onClose={() => setIsOpen(false)} anchor="right">
+    <Drawer
+      open={isOpen}
+      onClose={() => setIsOpen(false)}
+      anchor="right"
+      slotProps={{
+        paper: {
+          sx: {
+            "--Paper-overlay": "none !important"
+          }
+        }
+      }}
+    >
       <Box
         sx={{
           width: { xs: "100vw", sm: "200px" },
@@ -313,17 +333,18 @@ export const Navbar = ({
           variant="h3"
           component={Link}
           to={"/"}
-          sx={{
+          sx={(theme) => ({
             textDecoration: "none",
             fontSize: "16px",
             display: { xs: "none", md: "block" },
+            color: isIntersecting ? theme.palette.primary.main : theme.palette.primary.contrastText,
             "&:visited": {
-              color: "inherit",
+              color: isIntersecting ? theme.palette.primary.main : theme.palette.primary.contrastText,
             },
             "&:hover": {
               textDecoration: "underline",
             },
-          }}
+          })}
         >
           {name} — {title}
         </Typography>
@@ -331,17 +352,18 @@ export const Navbar = ({
           variant="h3"
           component={Link}
           to={"/"}
-          sx={{
+          sx={(theme) => ({
             textDecoration: "none",
             fontSize: "16px",
             display: { xs: "block", md: "none" },
+            color: isIntersecting ? theme.palette.primary.main : theme.palette.primary.contrastText,
             "&:visited": {
-              color: "inherit",
+              color: isIntersecting ? theme.palette.primary.main : theme.palette.primary.contrastText,
             },
             "&:hover": {
-              textDecoration: "underlined",
+              textDecoration: "underline",
             },
-          }}
+          })}
         >
           {name}
         </Typography>
