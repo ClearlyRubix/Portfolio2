@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router";
 import { Landing } from "./pages/Landing";
 import { Contact } from "./pages/Contact";
 import { NotFound } from "./pages/NotFound";
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
   const [heroElement, setHeroElement] = useState<HTMLDivElement | null>(null)
@@ -24,20 +25,22 @@ function App() {
   }, []);
 
   return (
-    <ThemeProvider theme={rootTheme}>
-      <CssBaseline />
-      <Navbar navRef={navRef} heroElement={heroElement} name="Cayden Batten" title="Electrical and Mechatronics Engineering Student" />
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route path="/" element={<Landing heroRef={heroRef} />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/portfolio" element={<Landing heroRef={heroRef} />} />
-            <Route path="/resume" element={<Landing heroRef={heroRef} />} />
-            <Route path="/*" element={<NotFound />} /> 
-          </Routes>
-        </Suspense>
-      <Footer footerRef={footerRef} name="Cayden Batten" title="Electrical and Mechatronics Engineering Student" />
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider theme={rootTheme}>
+        <CssBaseline />
+        <Navbar navRef={navRef} heroElement={heroElement} name="Cayden Batten" title="Electrical and Mechatronics Engineering Student" />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<Landing heroRef={heroRef} />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/portfolio" element={<Landing heroRef={heroRef} />} />
+              <Route path="/resume" element={<Landing heroRef={heroRef} />} />
+              <Route path="/*" element={<NotFound />} /> 
+            </Routes>
+          </Suspense>
+        <Footer footerRef={footerRef} name="Cayden Batten" title="Electrical and Mechatronics Engineering Student" />
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

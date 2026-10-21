@@ -1,5 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import type React from "react";
+import { Helmet } from "react-helmet-async";
 
 const ContactFormGroup = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -162,7 +163,7 @@ export const ContactForm = () => {
           textTransform: "none",
           boxShadow: "none",
           bgcolor: "white",
-          mixBlendMode: "difference"
+          mixBlendMode: "difference",
         }}
       >
         Send
@@ -173,38 +174,44 @@ export const ContactForm = () => {
 
 export const Contact = () => {
   return (
-    <Box
-      sx={(theme) => ({
-        display: { xs: "flex", md: "grid" },
-        gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-        flexDirection: { xs: "column" },
-        gap: "4vw",
-        alignItems: { xs: "start", md: "center" },
-        justifyContent: "center",
-        label: "ContactSection",
-        marginTop: "var(--nav-height)",
-        minHeight: "calc(100vh - var(--nav-height) - var(--footer-height))",
-        padding: theme.padding?.pagePadding,
-        maxWidth: "1200px",
-      })}
-    >
+    <>
+      <Helmet>
+        <title>Contact — Cayden Batten</title>
+        <link rel="canonical" href="https://caydenbatten.ca/contact" />
+      </Helmet>
       <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          label: "ContactHeader",
-        }}
+        sx={(theme) => ({
+          display: { xs: "flex", md: "grid" },
+          gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+          flexDirection: { xs: "column" },
+          gap: "4vw",
+          alignItems: { xs: "start", md: "center" },
+          justifyContent: "center",
+          label: "ContactSection",
+          marginTop: "var(--nav-height)",
+          minHeight: "calc(100vh - var(--nav-height) - var(--footer-height))",
+          padding: theme.padding?.pagePadding,
+          maxWidth: "1200px",
+        })}
       >
-        <Typography variant="h2">Send Me a Message</Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            label: "ContactHeader",
+          }}
+        >
+          <Typography variant="h2">Send Me a Message</Typography>
+        </Box>
+        <Box
+          sx={{
+            width: "100%",
+            label: "ContactFormColumn",
+          }}
+        >
+          <ContactForm />
+        </Box>
       </Box>
-      <Box
-        sx={{
-          width: "100%",
-          label: "ContactFormColumn",
-        }}
-      >
-        <ContactForm />
-      </Box>
-    </Box>
+    </>
   );
 };
