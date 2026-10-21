@@ -25,7 +25,7 @@ function App() {
   return (
     <ThemeProvider theme={rootTheme}>
       <CssBaseline />
-      <Navbar navRef={navRef} heroElement={heroElement} name="Cayden Batten" title="Electrical and Mechatronics Engineering Student"/>
+      <Navbar navRef={navRef} heroElement={heroElement} name="Cayden Batten" title="Electrical and Mechatronics Engineering Student" />
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<Landing heroRef={heroRef} />} />
@@ -34,7 +34,7 @@ function App() {
             <Route path="/resume" element={<Landing heroRef={heroRef} />} />
           </Routes>
         </Suspense>
-      <Footer footerRef={footerRef} />
+      <Footer footerRef={footerRef} name="Cayden Batten" title="Electrical and Mechatronics Engineering Student" />
     </ThemeProvider>
   );
 }
