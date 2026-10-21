@@ -190,6 +190,7 @@ export const Footer = ({
 }) => {
   return (
     <Box
+      ref={footerRef}
       sx={(theme) => ({
         backgroundColor: theme.palette.background.default,
         borderTop: `1px solid ${theme.palette.divider}`,
@@ -197,7 +198,6 @@ export const Footer = ({
       })}
     >
       <Box
-        ref={footerRef}
         sx={(theme) => ({
           display: "grid",
           gridTemplateColumns: "3fr 1fr 1fr",

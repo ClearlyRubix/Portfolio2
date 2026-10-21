@@ -6,6 +6,7 @@ import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router";
 import { Landing } from "./pages/Landing";
 import { Contact } from "./pages/Contact";
+import { NotFound } from "./pages/NotFound";
 
 function App() {
   const [heroElement, setHeroElement] = useState<HTMLDivElement | null>(null)
@@ -32,6 +33,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/portfolio" element={<Landing heroRef={heroRef} />} />
             <Route path="/resume" element={<Landing heroRef={heroRef} />} />
+            <Route path="/*" element={<NotFound />} /> 
           </Routes>
         </Suspense>
       <Footer footerRef={footerRef} name="Cayden Batten" title="Electrical and Mechatronics Engineering Student" />
