@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import type React from "react";
 
 const ContactFormGroup = ({ children }: { children: React.ReactNode }) => {
@@ -51,22 +51,55 @@ const ContactFormField = ({
         label: "ContactFormField",
       }}
     >
-      <Typography component={"label"}>
+      <Typography sx={{ fontWeight: "bold" }} component={"label"}>
         {label}
         {required ? (
-          <Typography component={"span"}> (required)</Typography>
+          <Typography
+            sx={{ filter: "contrast(40%)", fontSize: "0.8rem" }}
+            component={"span"}
+          >
+            {" "}
+            (required)
+          </Typography>
         ) : null}
       </Typography>
-      <input type={type} name={name} required={required} />
+      <TextField
+        sx={{
+          fontWeight: "bold",
+          lineHeight: "normal",
+          "& .MuiInputBase-input": {
+            padding: "0.6rem 0.75rem",
+          },
+          "& .MuiInputBase-root": {
+            borderRadius: 0,
+          },
+          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+            {
+              mixBlendMode: "difference",
+            },
+        }}
+        type={type}
+        name={name}
+        required={required}
+      />
     </Box>
   );
 };
 
 export const ContactForm = () => {
   return (
-    <Box component="form">
+    <Box
+      component="form"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1.25rem",
+      }}
+    >
       <ContactFormGroup>
-        <Typography component="label">Name</Typography>
+        <Typography sx={{ fontWeight: "bold" }} component="label">
+          Name
+        </Typography>
         <ContactFormRow>
           <ContactFormField
             label="First Name"
@@ -86,32 +119,73 @@ export const ContactForm = () => {
         <ContactFormField label="Email" name="email" required type="email" />
       </ContactFormGroup>
       <ContactFormGroup>
-        <Typography component={"label"}>Message</Typography>
-        <textarea name="message" rows={6} required />
+        <ContactFormField label="Subject" name="subject" required type="text" />
       </ContactFormGroup>
-      <Button variant="contained" type="submit">
-        Submit
+      <ContactFormGroup>
+        <Typography sx={{ fontWeight: "bold" }} component={"label"}>
+          Message
+          <Typography
+            sx={{ filter: "contrast(40%)", fontSize: "0.8rem" }}
+            component={"span"}
+          >
+            {" "}
+            (required)
+          </Typography>
+        </Typography>
+        <TextField
+          sx={{
+            "& .MuiInputBase-input": {
+              lineHeight: "normal",
+              padding: "0.6rem 0.75rem",
+            },
+            "& .MuiInputBase-root": {
+              padding: 0,
+              borderRadius: 0,
+            },
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+              {
+                mixBlendMode: "difference",
+              },
+          }}
+          multiline
+          name="message"
+          rows={6}
+          required
+        />
+      </ContactFormGroup>
+      <Button
+        variant="contained"
+        type="submit"
+        sx={{
+          borderRadius: 0,
+          alignSelf: "flex-start",
+          textTransform: "none",
+          boxShadow: "none",
+          bgcolor: "white",
+          mixBlendMode: "difference"
+        }}
+      >
+        Send
       </Button>
     </Box>
   );
 };
 
 export const Contact = () => {
-
   return (
     <Box
       sx={(theme) => ({
-        display: {xs: "flex", md: "grid"},
+        display: { xs: "flex", md: "grid" },
         gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-        flexDirection: {xs: "column"},
+        flexDirection: { xs: "column" },
         gap: "4vw",
-        alignItems: {xs: "start", md: "center"},
+        alignItems: { xs: "start", md: "center" },
         justifyContent: "center",
         label: "ContactSection",
         marginTop: "var(--nav-height)",
         minHeight: "calc(100vh - var(--nav-height) - var(--footer-height))",
         padding: theme.padding?.pagePadding,
-        maxWidth: "1200px"
+        maxWidth: "1200px",
       })}
     >
       <Box

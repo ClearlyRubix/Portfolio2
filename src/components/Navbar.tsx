@@ -337,9 +337,10 @@ export const Navbar = ({
             textDecoration: "none",
             fontSize: "16px",
             display: { xs: "none", md: "block" },
-            color: isIntersecting ? theme.palette.primary.main : theme.palette.primary.contrastText,
+            mixBlendMode: "difference",
+            color: theme.palette.primary.main,
             "&:visited": {
-              color: isIntersecting ? theme.palette.primary.main : theme.palette.primary.contrastText,
+              color: theme.palette.primary.main,
             },
             "&:hover": {
               textDecoration: "underline",
@@ -356,9 +357,10 @@ export const Navbar = ({
             textDecoration: "none",
             fontSize: "16px",
             display: { xs: "block", md: "none" },
-            color: isIntersecting ? theme.palette.primary.main : theme.palette.primary.contrastText,
+            mixBlendMode: "difference",
+            color: theme.palette.primary.main,
             "&:visited": {
-              color: isIntersecting ? theme.palette.primary.main : theme.palette.primary.contrastText,
+              color: theme.palette.primary.main,
             },
             "&:hover": {
               textDecoration: "underline",

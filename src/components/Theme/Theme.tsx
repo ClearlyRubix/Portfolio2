@@ -7,34 +7,30 @@ import "@fontsource/ubuntu";
 import "@fontsource-variable/inter";
 
 interface PaddingOptions {
-  pagePadding?: string
+  pagePadding?: string;
 }
 
 interface WidthOptions {
-  pageMaxWidth?: string
+  pageMaxWidth?: string;
 }
 
 declare module "@mui/material/styles" {
-
   interface Theme {
-    padding?: PaddingOptions,
-    width?: WidthOptions
+    padding?: PaddingOptions;
+    width?: WidthOptions;
   }
 
   interface ThemeOptions {
-    padding?: PaddingOptions,
-    width?: WidthOptions
+    padding?: PaddingOptions;
+    width?: WidthOptions;
   }
-
 }
 
 declare module "@mui/system" {
-
   interface Theme {
-    padding?: PaddingOptions,
-    width?: WidthOptions
+    padding?: PaddingOptions;
+    width?: WidthOptions;
   }
-
 }
 
 export const themeOptions: ThemeOptions = {
@@ -77,35 +73,34 @@ export const themeOptions: ThemeOptions = {
   typography: {
     fontFamily: "Inter, Poppins, Ubuntu, Roboto",
     h1: {
-      fontSize: '2.2rem',
+      fontSize: "2.2rem",
       fontWeight: 700,
       lineHeight: 1.1,
     },
     h2: {
-      fontSize: '1.8rem',
+      fontSize: "1.8rem",
       fontWeight: 700,
       lineHeight: 1.1,
     },
     h3: {
       fontWeight: 600,
-      fontSize: '1.6rem',
+      fontSize: "1.6rem",
       lineHeight: 1.1,
     },
     h4: {
-      fontSize: '1.4rem',
+      fontSize: "1.4rem",
       fontWeight: 500,
       lineHeight: 1.1,
     },
     h5: {
-      fontSize: '1.2rem',
+      fontSize: "1.2rem",
       lineHeight: 1.1,
     },
     h6: {
-      fontSize: '1rem',
+      fontSize: "1rem",
       lineHeight: 1.1,
       fontWeight: 300,
     },
-    fontSize: 16,
     subtitle1: {
       fontSize: "1rem",
       lineHeight: 1.6,
@@ -117,19 +112,21 @@ export const themeOptions: ThemeOptions = {
       lineHeight: 1.3,
     },
     body1: {
-      fontSize: "1rem",
+      fontSize: "0.9rem",
     },
     body2: {
-      lineHeight: 1.21,
+      lineHeight: 1.1,
       fontWeight: 400,
     },
     button: {
       fontWeight: 500,
-      lineHeight: 1.73,
+      lineHeight: 1.5,
     },
+    htmlFontSize: 16,
+    fontSize: 14
   },
   padding: {
-    pagePadding: "4vw"
+    pagePadding: "4vw",
   },
 };
 
